@@ -1,7 +1,8 @@
-'use client'
+// import CreateNoteDialog from '@/components/CreateNoteDialog'
+import CreateNoteDialog from '@/src/components/CreateNoteDialog'
 import { Button } from '@/src/components/ui/button'
+import { Separator } from '@/src/components/ui/separator'
 import { UserButton } from '@clerk/nextjs'
-import { Separator } from '@radix-ui/react-separator'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
@@ -28,13 +29,19 @@ const DashboardPage = (props: Props) => {
               <UserButton />
             </div>
           </div>
+
           <div className="h-8"></div>
           <Separator />
           <div className="h-8"></div>
           {/* list all the notes */}
           {/* TODO conditionally rendered  */}
           <div className="text-center">
-              <h2 className="text-xl text-gray-500">You have no notes yet.</h2>
+            <h2 className="text-xl text-gray-500">You have no notes yet.</h2>
+          </div>
+
+          {/* display all the notes  */}
+          <div className="grid sm:grid-cols-3 md:grid-cols-5 grid-cols-1 gap-3">
+            <CreateNoteDialog />
           </div>
         </div>
       </div>
