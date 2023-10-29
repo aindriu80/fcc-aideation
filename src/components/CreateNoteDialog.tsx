@@ -10,12 +10,38 @@ import {
 import { Plus } from 'lucide-react'
 import React from 'react'
 import { Input } from '@/components/ui/input'
+import axios from 'axios'
 import { Button } from './ui/button'
+import { useMutation } from '@tanstack/react-query'
 
 type Props = {}
 
 const CreateNoteDialog = (props: Props) => {
   const [input, setInput] = React.useState('')
+  const createNotebook = useMutation({
+    mutationFn: async () => {
+      const response = await axios.post('/api/createNoteBook', {
+        name: input,
+      })
+      return response.data
+    },
+  })
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (input === '') {
+      window.alert('Please enter a name for your notebook')
+      return
+    }
+    createNotebook.mutate(undefined, {
+      onSuccess: () => {
+        console.log('yay note created ')
+      },
+      onError: (error) => {
+        console.error(error)
+      },
+    })
+  }
   return (
     <Dialog>
       <DialogTrigger>
@@ -32,7 +58,7 @@ const CreateNoteDialog = (props: Props) => {
           <DialogDescription>
             You can create a new note by clicking the button below.
           </DialogDescription>
-          <form>
+          <form onSubmit={handleSubmit}>
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
