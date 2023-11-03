@@ -9,7 +9,7 @@ import {
 } from './ui/dialog'
 import { Loader2, Plus } from 'lucide-react'
 import React from 'react'
-import { Input } from '@/components/ui/input'
+import { Input } from '@/src/components/ui/input'
 import axios from 'axios'
 import { Button } from './ui/button'
 import { useMutation } from '@tanstack/react-query'
