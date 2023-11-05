@@ -29,6 +29,9 @@ const TipTapEditor = ({ note }: Props) => {
       return response.data
     },
   })
+  const apiKey2 = process.env.DATABASE_URL
+  console.log(apiKey2)
+
   const customText = Text.extend({
     addKeyboardShortcuts() {
       return {
@@ -45,6 +48,7 @@ const TipTapEditor = ({ note }: Props) => {
   const editor = useEditor({
     autofocus: true,
     extensions: [StarterKit, customText],
+    content: editorState,
     onUpdate: ({ editor }) => {
       setEditorState(editor.getHTML())
     },
@@ -80,9 +84,17 @@ const TipTapEditor = ({ note }: Props) => {
           {saveNote.isPending ? 'Saving...' : 'Saved'}
         </Button>
       </div>
-      <div className="prose">
+      <div className="prose prose-sm w-full mt-4">
         <EditorContent editor={editor} />
       </div>
+      <div className="h-4"></div>
+      <span className="text-sm">
+        Tip: Press{' '}
+        <kbd className="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border-gray-200 rounded-lg ">
+          Shift + A
+        </kbd>{' '}
+        for AI autocomplete
+      </span>
     </>
   )
 }

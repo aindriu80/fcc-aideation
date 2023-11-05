@@ -1,6 +1,6 @@
 import { OpenAIApi, Configuration } from 'openai-edge'
 import { OpenAIStream, StreamingTextResponse } from 'ai'
-//  //api/completion
+// /api/completion
 const config = new Configuration({ secretKey: process.env.OPENAI_API_KEY })
 
 const openai = new OpenAIApi(config)
@@ -21,9 +21,12 @@ export async function POST(req: Request) {
       },
       {
         role: 'user',
-        content: `I am writing a piece of text in  a notion text editor app.  
-	Help me complete my train of thought here: ##${prompt}## keep the tone of the text consistent with the rest of the text.  
-	keep the response short and sweet`,
+        content: `
+        I am writing a piece of text in a notion text editor app.
+        Help me complete my train of thought here: ##${prompt}##
+        keep the tone of the text consistent with the rest of the text.
+        keep the response short and sweet.
+        `,
       },
     ],
     stream: true,
