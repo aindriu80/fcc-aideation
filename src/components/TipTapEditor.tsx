@@ -1,5 +1,6 @@
 'use client'
-import React, { useEffect, useMemo, useState } from 'react'
+require('dotenv').config()
+import React from 'react'
 import { useEditor, EditorContent } from '@tiptap/react'
 import { StarterKit } from '@tiptap/starter-kit'
 import TipTapMenuBar from './TipTapMenuBar'
@@ -10,7 +11,6 @@ import Text from '@tiptap/extension-text'
 import axios from 'axios'
 import { NoteType } from '@/src/lib/db/schema'
 import { useCompletion } from 'ai/react'
-
 type Props = { note: NoteType }
 
 const TipTapEditor = ({ note }: Props) => {
@@ -29,8 +29,6 @@ const TipTapEditor = ({ note }: Props) => {
       return response.data
     },
   })
-  const apiKey2 = process.env.DATABASE_URL
-  console.log(apiKey2)
 
   const customText = Text.extend({
     addKeyboardShortcuts() {

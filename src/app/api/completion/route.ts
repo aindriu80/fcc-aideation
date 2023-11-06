@@ -1,7 +1,11 @@
 import { OpenAIApi, Configuration } from 'openai-edge'
 import { OpenAIStream, StreamingTextResponse } from 'ai'
 // /api/completion
-const config = new Configuration({ secretKey: process.env.OPENAI_API_KEY })
+
+// const config = new Configuratio
+const config = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY as string,
+})
 
 const openai = new OpenAIApi(config)
 
