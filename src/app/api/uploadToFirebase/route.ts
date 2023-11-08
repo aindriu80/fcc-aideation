@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const { noteId } = await req.json()
     // extract out the Dall-E imageURL
     // save to firebase
-    const note = await db
+    const notes = await db
       .select()
       .from($notes)
       .where(eq($notes.id, parseInt(noteId)))

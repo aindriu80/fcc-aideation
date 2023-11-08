@@ -8,6 +8,7 @@ import { eq } from 'drizzle-orm'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
+import Image from 'next/image'
 
 type Props = {}
 
@@ -52,7 +53,7 @@ const DashboardPage = async (props: Props) => {
               return (
                 <a href={`/notebook/${note.id}`} key={note.id}>
                   <div className="border border-stone-200 overflow-hidden flex flex-col hover:shadow-xl transition hover:-translate-y-1">
-                    <img
+                    <Image
                       width={400}
                       height={200}
                       alt={note.name}

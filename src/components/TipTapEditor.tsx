@@ -15,7 +15,7 @@ type Props = { note: NoteType }
 
 const TipTapEditor = ({ note }: Props) => {
   const [editorState, setEditorState] = React.useState(
-    note.editorState || `<h1>${note.name}>/h1>}`
+    note.editorState || `<h1>${note.name}</h1>`
   )
   const { complete, completion } = useCompletion({
     api: '/api/completion',
